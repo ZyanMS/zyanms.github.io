@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perjalanan Pertumbuhan Bayi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .modal-image {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        window.onload = function() {
+            const modal = document.getElementById('welcomeModal');
+            const spotifyFrame = document.getElementById('spotifyPlayer');
+            const bgAudio = new Audio('audio.mp3');
+            bgAudio.loop = true;
+            
+            document.getElementById('openButton').addEventListener('click', function() {
+                modal.style.display = 'none';
+                bgAudio.play();
+                spotifyFrame.src = "https://open.spotify.com/embed/track/6fxVffaTuwjgEk5h9QyRjy?utm_source=generator&autoplay=1";
+                spotifyFrame.style.display = 'block';
+            });
+
+            // Tambahkan event listener untuk semua gambar
+            document.querySelectorAll('.grid-item img').forEach(img => {
+                img.addEventListener('click', function() {
+                    const modal = document.createElement('div');
+                    modal.className = 'modal-image';
+                    modal.innerHTML = `
+                        <span class="close-modal">&times;</span>
+                        <img src="${this.src}" alt="${this.alt}">
+                    `;
+                    document.body.appendChild(modal);
+
+                    modal.querySelector('.close-modal').onclick = function() {
+                        modal.remove();
+                    }
+
+                    modal.onclick = function(e) {
+                        if (e.target === modal) {
+                            modal.remove();
+                        }
+                    }
+                });
+            });
+
+            // Fungsi untuk membuat salju
+            function createSnowflake() {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.opacity = Math.random();
+                snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                document.querySelector('.snowfall').appendChild(snowflake);
+                
+                setTimeout(() => {
+                    snowflake.remove();
+                }, 5000);
+            }
+
+            // Buat salju baru setiap 100ms
+            setInterval(createSnowflake, 100);
+        }
+    </script>
+</head>
+<body>
+    <div class="snowfall"></div>
+    <!-- Modal Overlay -->
+    <div id="welcomeModal" class="modal-overlay">
+        <button id="openButton" class="modal-button">Buka</button>
+    </div>
+
+    <div class="promo-card">
+        <div class="left-panel">
+            <h1>Zyan Muhammad Syakir</h1>
+            <p class="subtitle">ANAK DARI</p>
+            <p class="studio-name">SYAIFUL BAHRI & CINDY AFELLIA</p>
+            <div class="main-image">
+                <!-- <img src="https://images.unsplash.com/photo-1571210862729-78a52d3779a2?w=800" alt="Newborn Baby"> -->
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <div class="photo-grid">
+                <div class="grid-item large">
+                    <img src="assets/foto-utama.jpg" alt="Zyan Baru Lahir">
+                    <div class="image-description">
+                        
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <img src="assets/0.jpeg" alt="Zyan Baru Lahir">
+                    <div class="image-description">
+                        Zyan New Born
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <img src="assets/1.jpeg" alt="Zyan 1 Bulan">
+                    <div class="image-description">
+                        Umur 1 bulan
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <img src="assets/2.jpeg" alt="Zyan 2 Bulan">
+                    <div class="image-description">
+                        Umur 2 bulan
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <img src="assets/3.jpeg" alt="Zyan 3 Bulan">
+                    <div class="image-description">
+                        Umur 3 bulan
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <img src="assets/4.jpeg" alt="Zyan 4 Bulan">
+                    <div class="image-description">
+                        Umur 4 bulan
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <img src="assets/5.jpeg" alt="Zyan 5 Bulan">
+                    <div class="image-description">
+                        Umur 5 bulan
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <h2>PERJALANAN KECIL ZYAN</h2>
+                <p class="description">
+                    Alhamdulillah, pada 9 Juli 2024 di Kota Cimahi, Allah telah menghadirkan
+                    malaikat kecil kami, Zyan Muhammad Syakir. Setiap tangisan pertamanya menjadi
+                    melodi terindah yang memenuhi ruangan, dan setiap senyumnya bagaikan cahaya
+                    yang menerangi hari-hari kami. Dengan penuh rasa syukur, kami menyambut
+                    kehadirannya sebagai amanah terindah dari Allah SWT.
+                </p>
+                
+                <div class="cta">
+                    Perjalanan indah Zyan baru saja dimulai. Semoga Allah senantiasa
+                    membimbing langkah-langkahnya, melindungi setiap hembusan nafasnya,
+                    dan menjadikannya anak yang sholeh, cerdas, dan bermanfaat bagi
+                    agama, bangsa dan negara. Aamiin Ya Rabbal Alamin.
+                </div>
+
+                <div class="photo-grid">
+                    <div class="grid-item">
+                        <img src="assets/bobo.jpeg" alt="Zyan lagi bobo">
+                        <div class="image-description">
+                            Zyan lagi bobo
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="assets/tengkureb.jpeg" alt="Zyan lagi tengkureb">
+                        <div class="image-description">
+                            Zyan lagi tengkureb
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="assets/bergaya.jpeg" alt="Zyan lagi bergaya">
+                        <div class="image-description">
+                            Zyan lagi bergaya
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="assets/berenang.jpeg" alt="Zyan lagi berenang">
+                        <div class="image-description">
+                            Zyan lagi berenang
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="assets/duduk.jpeg" alt="Zyan lagi duduk">
+                        <div class="image-description">
+                            Zyan lagi pertama kali bisa duduk
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="assets/senyummanis.jpeg" alt="Zyan lagi senyum">
+                        <div class="image-description">
+                            Zyan lagi senyum manis
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="offer">
+                    SEMOGA MENJADI ANAK YANG SHOLEH DAN BERBAKTI
+                    <span>Selalu Dalam Lindungan Allah SWT</span>
+                </div>
+                
+                <div class="contact">
+                    <div class="logo">2024</div>
+                    <p>My Boy</p>
+                    <div class="contact-info">
+                        <p>syaifulbahri.bd@gmail.com</p>
+                        <p>085711900035</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
