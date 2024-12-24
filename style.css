@@ -47,7 +47,7 @@ body {
 }
 
 .studio-name {
-    font-size: 0.9em;
+    font-size: 1.3em;
     letter-spacing: 3px;
     color: #444;
     margin-bottom: 30px;
@@ -532,5 +532,208 @@ h2 {
 
     .grid-item {
         height: 250px;
+    }
+}
+
+/* Tambahkan style untuk bottom navbar */
+.bottom-navbar {
+    position: fixed;
+    bottom: -60px; /* awalnya tersembunyi di bawah */
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    transition: bottom 0.3s ease;
+    z-index: 1000;
+    display: none;
+}
+
+.bottom-navbar.visible {
+    bottom: 0;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.nav-item {
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+
+.nav-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+@media screen and (max-width: 768px) {
+    .bottom-navbar {
+        display: block;
+    }
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 10px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: #e0e0e0;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    text-align: left;
+}
+
+.timeline-date {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #f8f9fa;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.timeline-date .month {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    font-size: 0.9em;
+}
+
+.timeline-date .year {
+    color: #666;
+    font-size: 0.8em;
+}
+
+.timeline-content {
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.timeline-content h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.timeline-content p {
+    margin: 0;
+    line-height: 1.5;
+    color: #666;
+}
+
+.timeline-item::before {
+    content: '';
+}
+
+.timeline-item:nth-child(odd)::before {
+    right: -10px;
+}
+
+.timeline-item:nth-child(even)::before {
+    left: -10px;
+}
+
+@media screen and (max-width: 600px) {
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 15px;
+    }
+    
+    .timeline-item:nth-child(odd) {
+        left: 0;
+        text-align: left;
+    }
+    
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+    
+    .timeline-item::before {
+        left: 24px;
+    }
+    
+    .timeline-date {
+        padding: 6px 12px;
+    }
+    
+    .timeline-date .month {
+        font-size: 0.8em;
+    }
+    
+    .timeline-date .year {
+        font-size: 0.7em;
+    }
+    
+    .timeline-content {
+        padding: 12px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1em;
+        margin-bottom: 6px;
+    }
+    
+    .timeline-content p {
+        font-size: 0.85em;
+        line-height: 1.4;
+    }
+}
+
+/* Tambahan untuk devices yang lebih kecil */
+@media screen and (max-width: 320px) {
+    .timeline-content p {
+        font-size: 0.8em;
+    }
+    
+    .timeline-date .month {
+        font-size: 0.75em;
+    }
+    
+    .timeline-date .year {
+        font-size: 0.65em;
+    }
+    
+    .timeline-content h3 {
+        font-size: 0.9em;
     }
 } 
