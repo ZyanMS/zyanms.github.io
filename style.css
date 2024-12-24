@@ -8,10 +8,11 @@ body {
     background: #f5f5f5;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
     padding: 20px;
     font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
 }
 
 .promo-card {
@@ -19,6 +20,7 @@ body {
     max-width: 1200px;
     background: white;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
 }
 
 .left-panel {
@@ -343,5 +345,192 @@ h2 {
     }
     100% {
         transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+.scroll-button {
+    display: none;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .scroll-button {
+        display: flex;
+    }
+}
+
+.scroll-button:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateX(-50%) translateY(-5px);
+}
+
+.arrow-down {
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(45deg);
+    margin-top: 8px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 0;
+        height: auto;
+    }
+
+    .promo-card {
+        min-height: unset;
+        box-shadow: none;
+    }
+
+    .left-panel {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+    }
+
+    .right-panel {
+        height: auto;
+        max-height: none;
+        overflow-y: visible;
+    }
+
+    .grid-item {
+        height: 300px;
+    }
+
+    .left-panel h1 {
+        margin-top: 20px;
+        font-size: 4rem;
+        margin-bottom: 10px;
+        line-height: 1.2;
+    }
+
+    .left-panel .subtitle {
+        font-size: 1.1rem;
+        margin: 5px 0;
+    }
+
+    .left-panel .studio-name {
+        font-size: 1.2rem;
+        margin-top: 5px;
+    }
+
+    .right-panel {
+        width: 100%;
+        margin-left: 0;
+        padding: 20px;
+        overflow-x: hidden;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .grid-item {
+        margin-bottom: 15px;
+    }
+
+    .grid-item.large {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .content {
+        padding: 20px 0;
+    }
+
+    .content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .cta {
+        padding: 15px;
+        margin: 20px 0;
+        font-size: 0.9rem;
+    }
+
+    .offer {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    .offer span {
+        font-size: 0.9rem;
+    }
+
+    .contact {
+        padding: 15px;
+    }
+
+    .contact .logo {
+        font-size: 1.5rem;
+    }
+
+    .contact-info p {
+        font-size: 0.9rem;
+    }
+
+    /* Modal adjustments for mobile */
+    .modal-image img {
+        width: 95%;
+        height: auto;
+    }
+
+    .close-modal {
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+    }
+}
+
+/* Tambahan untuk devices yang lebih kecil */
+@media screen and (max-width: 480px) {
+    .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+    }
+
+    .left-panel h1 {
+        font-size: 3.5rem;
+    }
+
+    .content h2 {
+        font-size: 1.3rem;
+    }
+
+    .grid-item {
+        height: 250px;
     }
 } 
