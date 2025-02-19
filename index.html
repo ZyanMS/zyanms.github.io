@@ -1,705 +1,892 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zyan Muhammad Syakir</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" type="image/jpeg" href="assets/favicon.jpg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
 
     <style>
-        .modal-image {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+      .modal-image {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-image img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10000;
+      }
+
+      @media screen and (max-width: 768px) {
+        .left-panel h1 {
+          font-size: 40px;
         }
 
-        .modal-image img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
+        .right-panel h2 {
+          font-size: 20px;
         }
 
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
+        .description,
+        .cta {
+          font-size: 14px;
         }
 
-        @media screen and (max-width: 768px) {
-            .left-panel h1 {
-                font-size: 40px;
-            }
-
-            .right-panel h2 {
-                font-size: 20px;
-            }
-
-            .description, .cta {
-                font-size: 14px;
-            }
-
-            .studio-name {
-                font-size: 16px;
-            }
-
-            .subtitle {
-                font-size: 12px;
-            }
+        .studio-name {
+          font-size: 16px;
         }
 
-        .scroll-button {
-            padding: 12px 24px;
-            background-color: #ffffff;
-            color: rgb(41, 41, 41);
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            margin-top: 20px;
-            transition: background-color 0.3s;
+        .subtitle {
+          font-size: 12px;
         }
+      }
 
-        .scroll-button:hover {
-            /* background-color: #f1eaea; */
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-        }
+      .scroll-button {
+        padding: 12px 24px;
+        background-color: #ffffff;
+        color: rgb(41, 41, 41);
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+      }
 
-        /* Menambahkan style untuk arrow-down */
-        .arrow-down {
-            /* bottom: 19px; */
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
+      .scroll-button:hover {
+        /* background-color: #f1eaea; */
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      }
 
-        /* Tambahkan style untuk bottom navbar */
+      /* Menambahkan style untuk arrow-down */
+      .arrow-down {
+        /* bottom: 19px; */
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      /* Tambahkan style untuk bottom navbar */
+      .bottom-navbar {
+        position: fixed;
+        bottom: -60px; /* awalnya tersembunyi di bawah */
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 15px;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        transition: bottom 0.3s ease;
+        z-index: 1000;
+        display: none;
+      }
+
+      .bottom-navbar.visible {
+        bottom: 0;
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .nav-item {
+        text-align: center;
+        color: #333;
+        text-decoration: none;
+        font-family: "Poppins", sans-serif;
+        font-size: 12px;
+      }
+
+      .nav-item i {
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+
+      @media screen and (max-width: 768px) {
         .bottom-navbar {
-            position: fixed;
-            bottom: -60px; /* awalnya tersembunyi di bawah */
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            transition: bottom 0.3s ease;
-            z-index: 1000;
-            display: none;
+          display: block;
         }
+      }
 
-        .bottom-navbar.visible {
-            bottom: 0;
-        }
+      /* Tambahkan style untuk contact */
+      .contact {
+        margin-bottom: 60px; /* Memberikan jarak untuk bottom navbar */
+      }
 
-        .nav-content {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            max-width: 500px;
-            margin: 0 auto;
-        }
+      .modal-couple {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(5px);
+      }
 
-        .nav-item {
-            text-align: center;
-            color: #333;
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-        }
+      .modal-couple-content {
+        position: relative;
+        margin: auto;
+        padding: 5px;
+        width: 80%;
+        max-width: 600px;
+        max-height: 80vh;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        overflow-y: auto;
+      }
 
-        .nav-item i {
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
+      .heart-container {
+        width: 250px;
+        height: 250px;
+        margin: 0 auto 30px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+      }
 
-        @media screen and (max-width: 768px) {
-            .bottom-navbar {
-                display: block;
-            }
-        }
+      .couple-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.1);
+      }
 
-        /* Tambahkan style untuk contact */
-        .contact {
-            margin-bottom: 60px; /* Memberikan jarak untuk bottom navbar */
-        }
+      .couple-story {
+        margin-top: 20px;
+        color: #333;
+        font-family: "Poppins", sans-serif;
+      }
 
-        .modal-couple {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
-        }
+      .couple-story h2 {
+        margin-bottom: 15px;
+        color: #000;
+      }
 
-        .modal-couple-content {
-            position: relative;
-            margin: auto;
-            padding: 5px;
-            width: 80%;
-            max-width: 600px;
-            max-height: 80vh;
-            top: 50%;
-            transform: translateY(-50%);
-            text-align: center;
-            overflow-y: auto;
-        }
+      .close-couple {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        font-size: 35px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #333;
+      }
 
-        .heart-container {
-            width: 250px;
-            height: 250px;
-            margin: 0 auto 30px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 50%;
-        }
+      /* Tambahkan style untuk scrollbar */
+      .modal-couple-content::-webkit-scrollbar {
+        width: 8px;
+      }
 
-        .couple-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.1);
-        }
+      .modal-couple-content::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
 
-        .couple-story {
-            margin-top: 20px;
-            color: #333;
-            font-family: 'Poppins', sans-serif;
-        }
+      .modal-couple-content::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
 
-        .couple-story h2 {
-            margin-bottom: 15px;
-            color: #000;
-        }
+      .modal-couple-content::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
 
-        .close-couple {
-            position: absolute;
-            right: 25px;
-            top: 0;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #333;
-        }
+      .modal-couple .close-story {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        font-size: 35px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #333;
+      }
 
-        /* Tambahkan style untuk scrollbar */
-        .modal-couple-content::-webkit-scrollbar {
-            width: 8px;
-        }
+      .photos-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 20px 0;
+      }
 
-        .modal-couple-content::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
+      .photos-grid .grid-item {
+        text-align: center;
+      }
 
-        .modal-couple-content::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
-        }
+      .photos-grid .grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+      }
 
-        .modal-couple-content::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
+      .photos-grid .grid-item p {
+        margin-top: 8px;
+        font-size: 14px;
+      }
 
-        .modal-couple .close-story {
-            position: absolute;
-            right: 25px;
-            top: 0;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #333;
-        }
+      .close-photos {
+        position: absolute;
+        right: 25px;
+        top: 15px;
+        font-size: 35px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #333;
+        z-index: 2001; /* memastikan tombol close selalu di atas */
+      }
 
-        .photos-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 20px 0;
-        }
-
-        .photos-grid .grid-item {
-            text-align: center;
-        }
-
-        .photos-grid .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .photos-grid .grid-item p {
-            margin-top: 8px;
-            font-size: 14px;
-        }
-
-        .close-photos {
-            position: absolute;
-            right: 25px;
-            top: 15px;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #333;
-            z-index: 2001; /* memastikan tombol close selalu di atas */
-        }
-
-        .modal-couple-content {
-            position: relative; /* memastikan posisi absolute pada close button bekerja dengan benar */
-        }
+      .modal-couple-content {
+        position: relative; /* memastikan posisi absolute pada close button bekerja dengan benar */
+      }
     </style>
 
     <script>
-        window.onload = function() {
-            const modal = document.getElementById('welcomeModal');
-            const spotifyFrame = document.getElementById('spotifyPlayer');
-            const bgAudio = new Audio('audio.mp3');
-            bgAudio.loop = true;
-            
-            document.getElementById('openButton').addEventListener('click', function() {
-                modal.style.display = 'none';
-                bgAudio.play();
-                spotifyFrame.src = "https://open.spotify.com/embed/track/6fxVffaTuwjgEk5h9QyRjy?utm_source=generator&autoplay=1";
-                spotifyFrame.style.display = 'block';
-            });
+      window.onload = function () {
+        const modal = document.getElementById("welcomeModal");
+        const spotifyFrame = document.getElementById("spotifyPlayer");
+        const bgAudio = new Audio("audio.mp3");
+        bgAudio.loop = true;
 
-            // Tambahkan event listener untuk semua gambar
-            document.querySelectorAll('.grid-item img').forEach(img => {
-                img.addEventListener('click', function() {
-                    const modal = document.createElement('div');
-                    modal.className = 'modal-image';
-                    modal.innerHTML = `
+        document
+          .getElementById("openButton")
+          .addEventListener("click", function () {
+            modal.style.display = "none";
+            bgAudio.play();
+            spotifyFrame.src =
+              "https://open.spotify.com/embed/track/6fxVffaTuwjgEk5h9QyRjy?utm_source=generator&autoplay=1";
+            spotifyFrame.style.display = "block";
+          });
+
+        // Tambahkan event listener untuk semua gambar
+        document.querySelectorAll(".grid-item img").forEach((img) => {
+          img.addEventListener("click", function () {
+            const modal = document.createElement("div");
+            modal.className = "modal-image";
+            modal.innerHTML = `
                         <span class="close-modal">&times;</span>
                         <img src="${this.src}" alt="${this.alt}">
                     `;
-                    document.body.appendChild(modal);
+            document.body.appendChild(modal);
 
-                    modal.querySelector('.close-modal').onclick = function() {
-                        modal.remove();
-                    }
+            modal.querySelector(".close-modal").onclick = function () {
+              modal.remove();
+            };
 
-                    modal.onclick = function(e) {
-                        if (e.target === modal) {
-                            modal.remove();
-                        }
-                    }
-                });
-            });
+            modal.onclick = function (e) {
+              if (e.target === modal) {
+                modal.remove();
+              }
+            };
+          });
+        });
 
-            // Fungsi untuk membuat salju
-            function createSnowflake() {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                snowflake.innerHTML = '❄';
-                snowflake.style.left = Math.random() * 100 + '%';
-                snowflake.style.opacity = Math.random();
-                snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
-                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                
-                document.querySelector('.snowfall').appendChild(snowflake);
-                
-                setTimeout(() => {
-                    snowflake.remove();
-                }, 5000);
-            }
+        // Fungsi untuk membuat salju
+        function createSnowflake() {
+          const snowflake = document.createElement("div");
+          snowflake.classList.add("snowflake");
+          snowflake.innerHTML = "❄";
+          snowflake.style.left = Math.random() * 100 + "%";
+          snowflake.style.opacity = Math.random();
+          snowflake.style.fontSize = Math.random() * 10 + 10 + "px";
+          // Memperlambat durasi animasi menjadi 6-10 detik
+          snowflake.style.animationDuration = Math.random() * 4 + 6 + "s";
 
-            // Buat salju baru setiap 100ms
-            setInterval(createSnowflake, 100);
+          document.querySelector(".snowfall").appendChild(snowflake);
 
-            document.getElementById('scrollButton').addEventListener('click', function() {
-                const photoGrid = document.querySelector('.photo-grid');
-                const offset = 30; // offset dari atas dalam pixel
-                const targetPosition = photoGrid.getBoundingClientRect().top + window.pageYOffset - offset;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            });
+          // Memperpanjang waktu tampil salju menjadi 10 detik
+          setTimeout(() => {
+            snowflake.remove();
+          }, 10000);
         }
+
+        // Memperlambat interval pembuatan salju baru menjadi 500ms
+        setInterval(createSnowflake, 500);
+
+        document
+          .getElementById("scrollButton")
+          .addEventListener("click", function () {
+            const photoGrid = document.querySelector(".photo-grid");
+            const offset = 30; // offset dari atas dalam pixel
+            const targetPosition =
+              photoGrid.getBoundingClientRect().top +
+              window.pageYOffset -
+              offset;
+
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth",
+            });
+          });
+      };
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="snowfall"></div>
     <!-- Modal Overlay -->
     <div id="welcomeModal" class="modal-overlay">
-        <button id="openButton" class="modal-button">Buka</button>
+      <button id="openButton" class="modal-button">Buka</button>
     </div>
 
     <div class="promo-card">
-        <div class="left-panel">
-            <h1>Zyan Muhammad Syakir</h1>
-            <p class="subtitle">ANAK DARI</p>
-            <p class="studio-name">SYAIFUL BAHRI & CINDY AFELLIA</p>
-            <button id="scrollButton" class="scroll-button">Lihat foto<div class="arrow-down"></div></button>
-            <div class="main-image">
-                <!-- <img src="https://images.unsplash.com/photo-1571210862729-78a52d3779a2?w=800" alt="Newborn Baby"> -->
-            </div>
+      <div class="left-panel">
+        <h1>Zyan Muhammad Syakir</h1>
+        <p class="subtitle">ANAK DARI</p>
+        <p class="studio-name">SYAIFUL BAHRI & CINDY AFELLIA</p>
+        <button id="scrollButton" class="scroll-button">
+          Lihat foto
+          <div class="arrow-down"></div>
+        </button>
+        <div class="main-image">
+          <!-- <img src="https://images.unsplash.com/photo-1571210862729-78a52d3779a2?w=800" alt="Newborn Baby"> -->
         </div>
-        
-        <div class="right-panel">
-            <div class="photo-grid">
-                <div class="grid-item large">
-                    <img src="assets/foto-utama.jpg" alt="Zyan Baru Lahir">
-                    <div class="image-description">
-                        Anak Pertama
-                    </div>
-                </div>
-                <div class="grid-item">
-                    <img src="assets/0.jpeg" alt="Zyan Baru Lahir">
-                    <div class="image-description">
-                        Zyan New Born
-                    </div>
-                </div>
-                <div class="grid-item">
-                    <img src="assets/1.jpeg" alt="Zyan 1 Bulan">
-                    <div class="image-description">
-                        Umur 1 bulan
-                    </div>
-                </div>
-                <div class="grid-item">
-                    <img src="assets/2.jpeg" alt="Zyan 2 Bulan">
-                    <div class="image-description">
-                        Umur 2 bulan
-                    </div>
-                </div>
-                <div class="grid-item">
-                    <img src="assets/3.jpeg" alt="Zyan 3 Bulan">
-                    <div class="image-description">
-                        Umur 3 bulan
-                    </div>
-                </div>
-                <div class="grid-item">
-                    <img src="assets/4.jpeg" alt="Zyan 4 Bulan">
-                    <div class="image-description">
-                        Umur 4 bulan
-                    </div>
-                </div>
-                <div class="grid-item">
-                    <img src="assets/5.jpeg" alt="Zyan 5 Bulan">
-                    <div class="image-description">
-                        Umur 5 bulan
-                    </div>
-                </div>
-            </div>
-            
-            <div class="content">
-                <h2>PERJALANAN KECIL ZYAN</h2>
-                <p class="description">
-                    Alhamdulillah, pada 9 Juli 2024 di Kota Cimahi, Allah telah menghadirkan
-                    malaikat kecil kami, Zyan Muhammad Syakir. Setiap tangisan pertamanya menjadi
-                    melodi terindah yang memenuhi ruangan, dan setiap senyumnya bagaikan cahaya
-                    yang menerangi hari-hari kami. Dengan penuh rasa syukur, kami menyambut
-                    kehadirannya sebagai amanah terindah dari Allah SWT.
-                </p>
-                
-                <div class="cta">
-                    Perjalanan indah Zyan baru saja dimulai. Semoga Allah senantiasa
-                    membimbing langkah-langkahnya, melindungi setiap hembusan nafasnya,
-                    dan menjadikannya anak yang sholeh, cerdas, dan bermanfaat bagi
-                    agama, bangsa dan negara. Aamiin Ya Rabbal Alamin.
-                </div>
+      </div>
 
-                <div class="photo-grid">
-                    <div class="grid-item">
-                        <img src="assets/bobo.jpeg" alt="Zyan lagi bobo">
-                        <div class="image-description">
-                            Zyan lagi bobo
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <img src="assets/tengkureb.jpeg" alt="Zyan lagi tengkureb">
-                        <div class="image-description">
-                            Zyan lagi tengkureb
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <img src="assets/bergaya.jpeg" alt="Zyan lagi bergaya">
-                        <div class="image-description">
-                            Zyan lagi bergaya
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <img src="assets/berenang.jpeg" alt="Zyan lagi berenang">
-                        <div class="image-description">
-                            Zyan lagi berenang
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <img src="assets/duduk.jpeg" alt="Zyan lagi duduk">
-                        <div class="image-description">
-                            Zyan lagi pertama kali bisa duduk
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <img src="assets/senyummanis.jpeg" alt="Zyan lagi senyum">
-                        <div class="image-description">
-                            Zyan lagi senyum manis
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="offer">
-                    SEMOGA MENJADI ANAK YANG SHOLEH DAN BERBAKTI
-                    <span>Selalu Dalam Lindungan Allah SWT</span>
-                </div>
-                
-                <div class="contact">
-                    <div class="logo">2024</div>
-                    <p>My Boy</p>
-                    <div class="contact-info">
-                        <p>syaifulbahri.bd@gmail.com</p>
-                        <p>085711900035</p>
-                    </div>
-                </div>
-                
-            </div>
+      <div class="right-panel">
+        <div class="photo-grid">
+          <div class="grid-item large">
+            <img src="assets/foto-utama.jpg" alt="Zyan Baru Lahir" />
+            <div class="image-description">Anak Pertama</div>
+          </div>
+          <div class="grid-item">
+            <img src="assets/0.jpeg" alt="Zyan Baru Lahir" />
+            <div class="image-description">Zyan New Born</div>
+          </div>
+          <div class="grid-item">
+            <img src="assets/1.jpeg" alt="Zyan 1 Bulan" />
+            <div class="image-description">Umur 1 bulan</div>
+          </div>
+          <div class="grid-item">
+            <img src="assets/2.jpeg" alt="Zyan 2 Bulan" />
+            <div class="image-description">Umur 2 bulan</div>
+          </div>
+          <div class="grid-item">
+            <img src="assets/3.jpeg" alt="Zyan 3 Bulan" />
+            <div class="image-description">Umur 3 bulan</div>
+          </div>
+          <div class="grid-item">
+            <img src="assets/4.jpeg" alt="Zyan 4 Bulan" />
+            <div class="image-description">Umur 4 bulan</div>
+          </div>
+          <div class="grid-item">
+            <img src="assets/5.jpeg" alt="Zyan 5 Bulan" />
+            <div class="image-description">Umur 5 bulan</div>
+          </div>
+          <div class="grid-item">
+            <img src="assets/6.jpg" alt="Zyan 6 Bulan" />
+            <div class="image-description">Umur 6 bulan</div>
+          </div>
+          <div class="grid-item">
+            <img src="assets/7.jpg" alt="Zyan 7 Bulan" />
+            <div class="image-description">Umur 7 bulan</div>
+          </div>
         </div>
+
+        <div class="content">
+          <h2>PERJALANAN KECIL ZYAN</h2>
+          <p class="description">
+            Alhamdulillah, pada 9 Juli 2024 di Kota Cimahi, Allah telah
+            menghadirkan malaikat kecil kami, Zyan Muhammad Syakir. Setiap
+            tangisan pertamanya menjadi melodi terindah yang memenuhi ruangan,
+            dan setiap senyumnya bagaikan cahaya yang menerangi hari-hari kami.
+            Dengan penuh rasa syukur, kami menyambut kehadirannya sebagai amanah
+            terindah dari Allah SWT.
+          </p>
+
+          <div class="cta">
+            Perjalanan indah Zyan baru saja dimulai. Semoga Allah senantiasa
+            membimbing langkah-langkahnya, melindungi setiap hembusan nafasnya,
+            dan menjadikannya anak yang sholeh, cerdas, dan bermanfaat bagi
+            agama, bangsa dan negara. Aamiin Ya Rabbal Alamin.
+          </div>
+
+          <div class="photo-grid">
+            <div class="grid-item">
+              <img src="assets/bobo.jpeg" alt="Zyan lagi bobo" />
+              <div class="image-description">Zyan lagi bobo</div>
+            </div>
+            <div class="grid-item">
+              <img src="assets/tengkureb.jpeg" alt="Zyan lagi tengkureb" />
+              <div class="image-description">Zyan lagi tengkureb</div>
+            </div>
+            <div class="grid-item">
+              <img src="assets/bergaya.jpeg" alt="Zyan lagi bergaya" />
+              <div class="image-description">Zyan lagi bergaya</div>
+            </div>
+            <div class="grid-item">
+              <img src="assets/berenang.jpeg" alt="Zyan lagi berenang" />
+              <div class="image-description">Zyan lagi berenang</div>
+            </div>
+            <div class="grid-item">
+              <img src="assets/duduk.jpeg" alt="Zyan lagi duduk" />
+              <div class="image-description">
+                Zyan lagi pertama kali bisa duduk
+              </div>
+            </div>
+            <div class="grid-item">
+              <img src="assets/senyummanis.jpeg" alt="Zyan lagi senyum" />
+              <div class="image-description">Zyan lagi senyum manis</div>
+            </div>
+            <div class="grid-item">
+              <img
+                src="assets/ulangtahunsetengahtahun.jpg"
+                alt="Setengah tahun Zyan"
+              />
+              <div class="image-description">
+                6 bulan pertama yang penuh kebahagiaan!
+              </div>
+            </div>
+            <div class="grid-item">
+              <img src="assets/boluuntukzyan.jpg" alt="Bolu Zyan" />
+              <div class="image-description">
+                Merayakan milestone dengan bolu spesial
+              </div>
+            </div>
+            <div class="grid-item">
+              <img src="assets/punyaduagigi.jpg" alt="Gigi pertama Zyan" />
+              <div class="image-description">
+                Si kecil sudah punya dua gigi lucu!
+              </div>
+            </div>
+            <div class="grid-item">
+              <img src="assets/ikutbelanja.jpg" alt="Belanja bersama Zyan" />
+              <div class="image-description">
+                Pengalaman pertama belanja bareng
+              </div>
+            </div>
+            <div class="grid-item">
+              <img src="assets/bobosiang.jpg" alt="Tidur siang Zyan" />
+              <div class="image-description">
+                Bobo siang yang damai dan nyenyak
+              </div>
+            </div>
+            <div class="grid-item">
+              <img src="assets/bisaduduktegak.jpg" alt="Duduk tegak Zyan" />
+              <div class="image-description">
+                Pencapaian baru: duduk tegak sendiri!
+              </div>
+            </div>
+            <div class="grid-item">
+              <img src="assets/tengkureb.jpeg" alt="Tengkureb Zyan" />
+              <div class="image-description">
+                Latihan tengkureb si jagoan kecil
+              </div>
+            </div>
+          </div>
+
+          <div class="offer">
+            SEMOGA MENJADI ANAK YANG SHOLEH DAN BERBAKTI
+            <span>Selalu Dalam Lindungan Allah SWT</span>
+          </div>
+
+          <div class="contact">
+            <div class="logo">
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+            </div>
+            <p>My Boy</p>
+            <div class="contact-info">
+              <p>syaifulbahri.bd@gmail.com</p>
+              <p>085711900035</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="bottom-navbar">
-        <div class="nav-content">
-            <a href="#home" class="nav-item">
-                <i class="fas fa-home"></i>
-                <div>Beranda</div>
-            </a>
-            <a href="#couple" class="nav-item">
-                <i class="fas fa-heart"></i>
-                <div>Ayah & Ibu</div>
-            </a>
-            <a href="#photos" class="nav-item">
-                <i class="fas fa-images"></i>
-                <div>Foto</div>
-            </a>
-            <a href="#story" class="nav-item">
-                <i class="fas fa-book"></i>
-                <div>Cerita</div>
-            </a>
-        </div>
+      <div class="nav-content">
+        <a href="#home" class="nav-item">
+          <i class="fas fa-home"></i>
+          <div>Beranda</div>
+        </a>
+        <a href="#couple" class="nav-item">
+          <i class="fas fa-heart"></i>
+          <div>Ayah & Ibu</div>
+        </a>
+        <a href="#photos" class="nav-item">
+          <i class="fas fa-images"></i>
+          <div>Foto</div>
+        </a>
+        <a href="#story" class="nav-item">
+          <i class="fas fa-book"></i>
+          <div>Cerita</div>
+        </a>
+      </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const navbar = document.querySelector('.bottom-navbar');
-            const threshold = 100;
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".bottom-navbar");
+        const threshold = 100;
 
-            window.addEventListener('scroll', function() {
-                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-                
-                if (currentScroll > threshold) {
-                    // Selalu tampilkan navbar ketika sudah scroll lebih dari threshold
-                    navbar.classList.add('visible');
-                } else {
-                    // Sembunyikan hanya ketika di bagian atas halaman
-                    navbar.classList.remove('visible');
-                }
-            });
+        window.addEventListener("scroll", function () {
+          let currentScroll =
+            window.pageYOffset || document.documentElement.scrollTop;
 
-            // Modal Couple
-            const coupleModal = document.getElementById('coupleModal');
-            const coupleLink = document.querySelector('a[href="#couple"]');
-            const closeCouple = document.querySelector('.close-couple');
-
-            coupleLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                coupleModal.style.display = 'block';
-            });
-
-            closeCouple.addEventListener('click', function() {
-                coupleModal.style.display = 'none';
-            });
-
-            window.addEventListener('click', function(e) {
-                if (e.target == coupleModal) {
-                    coupleModal.style.display = 'none';
-                }
-            });
-
-            // Modal Story
-            const storyModal = document.getElementById('storyModal');
-            const storyLink = document.querySelector('a[href="#story"]');
-            const closeStory = document.getElementsByClassName('close-story')[0];
-
-            storyLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                storyModal.style.display = 'block';
-            });
-
-            if (closeStory) {
-                closeStory.addEventListener('click', function() {
-                    storyModal.style.display = 'none';
-                });
-            }
-
-            window.addEventListener('click', function(e) {
-                if (e.target == storyModal) {
-                    storyModal.style.display = 'none';
-                }
-            });
-
-            // Modal Photos
-            const photosModal = document.getElementById('photosModal');
-            const photosLink = document.querySelector('a[href="#photos"]');
-            const closePhotos = document.querySelector('.close-photos');
-
-            photosLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                photosModal.style.display = 'block';
-            });
-
-            closePhotos.addEventListener('click', function() {
-                photosModal.style.display = 'none';
-            });
-
-            window.addEventListener('click', function(e) {
-                if (e.target == photosModal) {
-                    photosModal.style.display = 'none';
-                }
-            });
+          if (currentScroll > threshold) {
+            // Selalu tampilkan navbar ketika sudah scroll lebih dari threshold
+            navbar.classList.add("visible");
+          } else {
+            // Sembunyikan hanya ketika di bagian atas halaman
+            navbar.classList.remove("visible");
+          }
         });
+
+        // Event listeners untuk bottom navbar dan side navbar
+        const setupNavigation = (navbarSelector) => {
+          const navbar = document.querySelector(navbarSelector);
+          if (!navbar) return;
+
+          // Modal Couple
+          const coupleModal = document.getElementById("coupleModal");
+          const coupleLink = navbar.querySelector('a[href="#couple"]');
+          const closeCouple = document.querySelector(".close-couple");
+
+          if (coupleLink) {
+            coupleLink.addEventListener("click", function (e) {
+              e.preventDefault();
+              coupleModal.style.display = "block";
+            });
+          }
+
+          // Modal Story
+          const storyModal = document.getElementById("storyModal");
+          const storyLink = navbar.querySelector('a[href="#story"]');
+          const closeStory = document.getElementsByClassName("close-story")[0];
+
+          if (storyLink) {
+            storyLink.addEventListener("click", function (e) {
+              e.preventDefault();
+              storyModal.style.display = "block";
+            });
+          }
+
+          // Modal Photos
+          const photosModal = document.getElementById("photosModal");
+          const photosLink = navbar.querySelector('a[href="#photos"]');
+          const closePhotos = document.querySelector(".close-photos");
+
+          if (photosLink) {
+            photosLink.addEventListener("click", function (e) {
+              e.preventDefault();
+              photosModal.style.display = "block";
+            });
+          }
+        };
+
+        // Setup event listeners untuk kedua navbar
+        setupNavigation(".bottom-navbar");
+        setupNavigation(".side-navbar");
+
+        // Close button handlers
+        const closeButtons = document.querySelectorAll(
+          ".close-couple, .close-story, .close-photos"
+        );
+        closeButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            this.closest(".modal-couple").style.display = "none";
+          });
+        });
+
+        // Click outside modal to close
+        window.addEventListener("click", function (e) {
+          if (e.target.classList.contains("modal-couple")) {
+            e.target.style.display = "none";
+          }
+        });
+      });
     </script>
 
     <!-- Tambahkan modal untuk Ayah & Ibu setelah snowfall div -->
     <div id="coupleModal" class="modal-couple">
-        <div class="modal-couple-content">
-            <span class="close-couple">&times;</span>
-            <div class="heart-container">
-                <img src="assets/couple.jpeg" alt="Foto Ayah & Ibu" class="couple-image">
-            </div>
-            <div class="couple-story">
-                <h2>Kisah Kasih <br> Ayah & Ibu</h2>
-                <p>
-                    Kisah kami berawal dari sebuah pertemuan unik di dunia game Dragon Nest. 
-                    Dimulai dengan pernikahan virtual dalam game, takdir kemudian mempertemukan 
-                    kami di dunia nyata di Kota Bandung. Setelah menjalin hubungan yang penuh 
-                    warna, kami memutuskan untuk melanjutkan ke jenjang pernikahan yang 
-                    sesungguhnya. Alhamdulillah, perjalanan cinta kami kini semakin lengkap 
-                    dengan hadirnya Zyan Muhammad Syakir, buah hati yang kami nantikan.
-                </p>
-            </div>
+      <div class="modal-couple-content">
+        <span class="close-couple">&times;</span>
+        <div class="heart-container">
+          <img
+            src="assets/couple.jpeg"
+            alt="Foto Ayah & Ibu"
+            class="couple-image"
+          />
         </div>
+        <div class="couple-story">
+          <h2>
+            Kisah Kasih <br />
+            Ayah & Ibu
+          </h2>
+          <p>
+            Kisah kami berawal dari sebuah pertemuan unik di dunia game Dragon
+            Nest. Dimulai dengan pernikahan virtual dalam game, takdir kemudian
+            mempertemukan kami di dunia nyata di Kota Bandung. Setelah menjalin
+            hubungan yang penuh warna, kami memutuskan untuk melanjutkan ke
+            jenjang pernikahan yang sesungguhnya. Alhamdulillah, perjalanan
+            cinta kami kini semakin lengkap dengan hadirnya Zyan Muhammad
+            Syakir, buah hati yang kami nantikan.
+          </p>
+        </div>
+      </div>
     </div>
 
     <!-- Tambahkan modal untuk Cerita setelah coupleModal -->
     <div id="storyModal" class="modal-couple">
-        <div class="modal-couple-content">
-            <span class="close-story">&times;</span>
-            <div class="heart-container">
-                <img src="assets/foto-utama.jpg" alt="Foto Zyan" class="couple-image">
-            </div>
-            <div class="couple-story">
-                <h2>Perjalanan Kecil <br> Zyan Muhammad Syakir</h2>
-                
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            <span class="month">Juli</span>
-                            <span class="year">2024</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Awal Perjalanan</h3>
-                            <p>Lahir dengan selamat melalui operasi cesar di RS Cimahi, membawa kebahagiaan tak terkira bagi keluarga.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            <span class="month">Bulan 1</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Menyapa Dunia</h3>
-                            <p>Mata mungilnya mulai terbuka lebar, seolah ingin menyapa dunia dengan penuh rasa penasaran.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            <span class="month">Bulan 2</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Senyum Pertama</h3>
-                            <p>Tangisan dan ekspresi menggemaskannya membuat kami tak bisa berhenti tersenyum.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            <span class="month">Bulan 3</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Si Kecil Bawel</h3>
-                            <p>Tumbuh menjadi bayi yang semakin bawel dan ekspresif, mengisi hari-hari dengan celotehan manisnya.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            <span class="month">Bulan 4</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Duduk Mandiri</h3>
-                            <p>Momen membanggakan saat Zyan sudah bisa duduk dengan tegap!</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            <span class="month">Bulan 5</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Terus Bertumbuh</h3>
-                            <p>Terus bertumbuh semakin besar, diiringi harapan dan doa Ayah Ibu yang selalu menyertai setiap langkah kecilnya.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="modal-couple-content">
+        <span class="close-story">&times;</span>
+        <div class="heart-container">
+          <img
+            src="assets/foto-utama.jpg"
+            alt="Foto Zyan"
+            class="couple-image"
+          />
         </div>
+        <div class="couple-story">
+          <h2>
+            Perjalanan Kecil <br />
+            Zyan Muhammad Syakir
+          </h2>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">
+                <span class="month">Juli</span>
+                <span class="year">2024</span>
+              </div>
+              <div class="timeline-content">
+                <h3>Awal Perjalanan</h3>
+                <p>
+                  Lahir dengan selamat melalui operasi cesar di RS Cimahi,
+                  membawa kebahagiaan tak terkira bagi keluarga.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">
+                <span class="month">Bulan 1</span>
+              </div>
+              <div class="timeline-content">
+                <h3>Menyapa Dunia</h3>
+                <p>
+                  Mata mungilnya mulai terbuka lebar, seolah ingin menyapa dunia
+                  dengan penuh rasa penasaran.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">
+                <span class="month">Bulan 2</span>
+              </div>
+              <div class="timeline-content">
+                <h3>Senyum Pertama</h3>
+                <p>
+                  Tangisan dan ekspresi menggemaskannya membuat kami tak bisa
+                  berhenti tersenyum.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">
+                <span class="month">Bulan 3</span>
+              </div>
+              <div class="timeline-content">
+                <h3>Si Kecil Bawel</h3>
+                <p>
+                  Tumbuh menjadi bayi yang semakin bawel dan ekspresif, mengisi
+                  hari-hari dengan celotehan manisnya.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">
+                <span class="month">Bulan 4</span>
+              </div>
+              <div class="timeline-content">
+                <h3>Duduk Mandiri</h3>
+                <p>
+                  Momen membanggakan saat Zyan sudah bisa duduk dengan tegap!
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">
+                <span class="month">Bulan 5</span>
+              </div>
+              <div class="timeline-content">
+                <h3>Terus Bertumbuh</h3>
+                <p>
+                  Terus bertumbuh semakin besar, diiringi harapan dan doa Ayah
+                  Ibu yang selalu menyertai setiap langkah kecilnya.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">
+                <span class="month">Bulan 6</span>
+              </div>
+              <div class="timeline-content">
+                <h3>Setengah Tahun Pertama</h3>
+                <p>
+                  Merayakan milestone 6 bulan dengan penuh kebahagiaan. Zyan
+                  sudah bisa duduk dengan mantap dan mulai menunjukkan dua gigi
+                  pertamanya!
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">
+                <span class="month">Bulan 7</span>
+              </div>
+              <div class="timeline-content">
+                <h3>Petualangan Baru</h3>
+                <p>
+                  Mulai aktif merangkak dan mengeksplorasi sekitar. Pengalaman
+                  pertama belanja bersama dan semakin banyak celoteh yang
+                  menggemaskan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Tambahkan modal untuk Foto setelah storyModal -->
     <div id="photosModal" class="modal-couple">
-        <div class="modal-couple-content">
-            <span class="close-photos">&times;</span>
-            <div class="couple-story">
-                <h2>Album Foto</h2>
-                <div class="photos-grid">
-                    <div class="grid-item">
-                        <img src="assets/0.jpeg" alt="Zyan New Born">
-                        <p>Zyan New Born</p>
-                    </div>
-                    <div class="grid-item">
-                        <img src="assets/1.jpeg" alt="Zyan 1 Bulan">
-                        <p>Umur 1 bulan</p>
-                    </div>
-                    <div class="grid-item">
-                        <img src="assets/2.jpeg" alt="Zyan 2 Bulan">
-                        <p>Umur 2 bulan</p>
-                    </div>
-                    <!-- ... tambahkan foto lainnya ... -->
-                </div>
-            </div>
+      <div class="modal-couple-content">
+        <span class="close-photos">&times;</span>
+        <div class="couple-story">
+          <h2>Album Foto</h2>
+          <div id="dynamic-photos-grid" class="photos-grid">
+            <!-- Foto akan ditambahkan secara dinamis di sini -->
+          </div>
         </div>
+      </div>
     </div>
 
-    
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const photosGrid = document.getElementById("dynamic-photos-grid");
+        const imageFiles = [
+          "asia-afrika (1).jpg",
+          "asia-afrika (2).jpg",
+          "asia-afrika (3).jpg",
+          "asia-afrika (4).jpg",
+        ];
+
+        imageFiles.forEach((file) => {
+          const gridItem = document.createElement("div");
+          gridItem.className = "grid-item";
+          gridItem.innerHTML = `<img src="assets/album-foto/${file}" alt="${file}" loading="lazy">`;
+          photosGrid.appendChild(gridItem);
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Daftar gambar untuk slideshow
+        const images = [
+          "assets/hero.jpeg",
+          "assets/hero2.jpg",
+          "assets/hero3.jpg",
+        ];
+
+        const slideshowContainer = document.createElement("div");
+        slideshowContainer.className = "slideshow-container";
+
+        // Buat elemen untuk setiap gambar
+        images.forEach((image, index) => {
+          const slideDiv = document.createElement("div");
+          slideDiv.className = `slideshow-image ${index === 0 ? "active" : ""}`;
+          slideDiv.style.backgroundImage = `url(${image})`;
+          slideshowContainer.appendChild(slideDiv);
+        });
+
+        // Tambahkan container ke left-panel sebelum konten lainnya
+        const leftPanel = document.querySelector(".left-panel");
+        leftPanel.insertBefore(slideshowContainer, leftPanel.firstChild);
+
+        // Fungsi untuk mengganti slide
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".slideshow-image");
+
+        function nextSlide() {
+          slides[currentSlide].classList.remove("active");
+          currentSlide = (currentSlide + 1) % slides.length;
+          slides[currentSlide].classList.add("active");
+        }
+
+        // Ganti slide setiap 5 detik
+        setInterval(nextSlide, 5000);
+      });
+    </script>
+
+    <div class="side-navbar">
+      <div class="nav-content">
+        <a href="#home" class="nav-item">
+          <i class="fas fa-home"></i>
+          <div>Beranda</div>
+        </a>
+        <a href="#couple" class="nav-item">
+          <i class="fas fa-heart"></i>
+          <div>Ayah & Ibu</div>
+        </a>
+        <a href="#photos" class="nav-item">
+          <i class="fas fa-images"></i>
+          <div>Foto</div>
+        </a>
+        <a href="#story" class="nav-item">
+          <i class="fas fa-book"></i>
+          <div>Cerita</div>
+        </a>
+      </div>
+    </div>
+  </body>
 </html>
